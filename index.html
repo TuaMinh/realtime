@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giám sát Nhiệt độ & Độ ẩm</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    h1 {
+      color: #007BFF;
+    }
+    .data {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .tab-button {
+      padding: 10px 15px;
+      margin: 0 5px;
+      cursor: pointer;
+      border: 1px solid #007BFF;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+    }
+    .tab-button.active {
+      background-color: #007BFF;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-button active" onclick="showTab(1)">Tab 1</button>
+    <button class="tab-button" onclick="showTab(2)">Tab 2</button>
+    <button class="tab-button" onclick="showTab(3)">Tab 3</button>
+    <button class="tab-button" onclick="showTab(4)">Tab 4</button>
+    <button class="tab-button" onclick="showTab(5)">Tab 5</button>
+  </div>
+
+  <div id="tab1" class="container" style="display: block;">
+    <h1>Giám sát Nhiệt độ & Độ ẩm - Tab 1</h1>
+    <p class="data">Nhiệt độ: <span id="temperature1">--</span>°C</p>
+    <p class="data">Độ ẩm: <span id="humidity1">--</span>%</p>
+    <p>Cập nhật mỗi phút</p>
+  </div>
+  
+  <div id="tab2" class="container">
+    <h1>Giám sát Nhiệt độ & Độ ẩm - Tab 2</h1>
+    <p class="data">Nhiệt độ: <span id="temperature2">--</span>°C</p>
+    <p class="data">Độ ẩm: <span id="humidity2">--</span>%</p>
+    <p>Cập nhật mỗi phút</p>
+  </div>
+
+  <div id="tab3" class="container">
+    <h1>Giám sát Nhiệt độ & Độ ẩm - Tab 3</h1>
+    <p class="data">Nhiệt độ: <span id="temperature3">--</span>°C</p>
+    <p class="data">Độ ẩm: <span id="humidity3">--</span>%</p>
+    <p>Cập nhật mỗi phút</p>
+  </div>
+
+  <div id="tab4" class="container">
+    <h1>Giám sát Nhiệt độ & Độ ẩm - Tab 4</h1>
+    <p class="data">Nhiệt độ: <span id="temperature4">--</span>°C</p>
+    <p class="data">Độ ẩm: <span id="humidity4">--</span>%</p>
+    <p>Cập nhật mỗi phút</p>
+  </div>
+
+  <div id="tab5" class="container">
+    <h1>Giám sát Nhiệt độ & Độ ẩm - Tab 5</h1>
+    <p class="data">Nhiệt độ: <span id="temperature5">--</span>°C</p>
+    <p class="data">Độ ẩm: <span id="humidity5">--</span>%</p>
+    <p>Cập nhật mỗi phút</p>
+  </div>
+
+  <script>
+    function generateRandomData(min, max) {
+      return (Math.random() * (max - min) + min).toFixed(2);
+    }
+
+    function updateData() {
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('temperature' + i).innerText = generateRandomData(20, 35);
+        document.getElementById('humidity' + i).innerText = generateRandomData(40, 80);
+      }
+    }
+
+    function showTab(tabNumber) {
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('tab' + i).style.display = 'none';
+        document.getElementsByClassName('tab-button')[i - 1].classList.remove('active');
+      }
+      document.getElementById('tab' + tabNumber).style.display = 'block';
+      document.getElementsByClassName('tab-button')[tabNumber - 1].classList.add('active');
+    }
+
+    updateData(); // Cập nhật ngay khi tải trang
+    setInterval(updateData, 60000); // Cập nhật mỗi phút
+  </script>
+</body>
+</html>
